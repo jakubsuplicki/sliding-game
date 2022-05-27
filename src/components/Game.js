@@ -153,6 +153,7 @@ class Game extends Component {
     if (
       this.state.gameState === GAME_OVER || this.state.gameState === GAME_PAUSED
     ) {
+      this.props.onScore('4504')
       return;
     }
 
@@ -191,6 +192,8 @@ class Game extends Component {
         // call function to export the score
         this.setState({
           score: score,
+        }, () => {
+          this.props.onScore(score)
         });
       }
 
@@ -264,6 +267,7 @@ Game.propTypes = {
   gridSize: PropTypes.number,
   moves: PropTypes.number,
   seconds: PropTypes.number,
+  onScore: PropTypes.any
 };
 
 Game.defaultProps = {

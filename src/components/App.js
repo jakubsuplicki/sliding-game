@@ -37,9 +37,11 @@ class App extends Component {
   render() {
     const { className } = this.props;
 
+    this.props.onScore('3333333')
     return (
       <div className={className}>
         <Game
+            onScore={this.props.onScore}
           gridSize={4}
           tileSize={90}
           numbers={this.state.level.tileSet}
@@ -56,6 +58,7 @@ App.propTypes = {
   level: PropTypes.shape({
     tileSet: PropTypes.arrayOf(PropTypes.number).isRequired,
   }),
+  onScore: PropTypes.any
 };
 
 export default styled(App)`

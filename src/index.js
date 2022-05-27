@@ -8,10 +8,15 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 
 injectTapEventPlugin();
 
-const MuiTheme = () => (
+const MuiTheme = ({onScore}) => (
   <MuiThemeProvider>
-    <App level={levelFactory(4 ** 2)} />
+    <App level={levelFactory(4 ** 2)} onScore={onScore} />
   </MuiThemeProvider>
 );
 
-ReactDOM.render(<MuiTheme />, document.getElementById('root'));
+
+export const main = (element, onEvent) => {
+    ReactDOM.render(<MuiTheme onScore={onEvent} />, element)
+}
+
+window.runMiniGame = main

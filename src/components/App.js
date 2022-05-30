@@ -3,12 +3,12 @@ import levelFactory from './../lib/levels-factory';
 import Game from './Game';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-
+import  {gameLevel} from '../index'
 class App extends Component {
   constructor(props) {
     super(props);
 
-    const level = props.level ? props.level : levelFactory(4 ** 2);
+    const level = props.level ? props.level : levelFactory(gameLevel);
     const originalLevel = Object.assign({}, level);
 
     this.state = {
@@ -26,7 +26,7 @@ class App extends Component {
   };
 
   onNewClick = () => {
-    const newLevel = levelFactory(4 ** 2);
+    const newLevel = levelFactory(gameLevel);
     const newOriginalLevel = Object.assign({}, newLevel);
     this.setState({
       level: newLevel,
@@ -37,11 +37,10 @@ class App extends Component {
   render() {
     const { className } = this.props;
 
-    this.props.onScore('3333333')
     return (
       <div className={className}>
         <Game
-            onScore={this.props.onScore}
+          onScore={this.props.onScore}
           gridSize={4}
           tileSize={90}
           numbers={this.state.level.tileSet}

@@ -153,7 +153,6 @@ class Game extends Component {
     if (
       this.state.gameState === GAME_OVER || this.state.gameState === GAME_PAUSED
     ) {
-      this.props.onScore('4504')
       return;
     }
 
@@ -186,7 +185,8 @@ class Game extends Component {
 
       const checkGameOver = this.isGameOver(t);
       const maxScore = 10000
-      const score = maxScore-((this.state.seconds)+(this.state.moves))
+      const calculated = Math.round(maxScore-((this.state.seconds)+(this.state.moves)))
+      const score = calculated < 0 ? 0 : calculated
 
       if (checkGameOver) {
         // call function to export the score
